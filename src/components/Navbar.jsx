@@ -1,22 +1,27 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import "../styles/navbar.css";
 import logo from "../assets/NextVRZ-Final_Logopng.png";
 
 export default function Navbar() {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
-const [scrolled, setScrolled] = useState(false);
 
-  // Function to get the class for each NavLink
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false); // ✅ FIX 1
+
   useEffect(() => {
-  const handleScroll = () => {
-    setScrolled(window.scrollY > 50);
-  };
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+  // ✅ Close menu on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   const getLinkClass = ({ isActive }) => {
     if (isActive && isHome) return "active home-link";
@@ -26,7 +31,10 @@ const [scrolled, setScrolled] = useState(false);
 
   return (
     <header
-  className={`navbar ${isHome ? "home" : "light"} ${scrolled ? "scrolled" : ""}`}>
+      className={`navbar ${isHome ? "home" : "light"} ${
+        scrolled ? "scrolled" : ""
+      }`}
+    >
       <div className="nav-container">
         <div className="brand">
           <img src={logo} alt="Next Verse" />
@@ -40,20 +48,19 @@ const [scrolled, setScrolled] = useState(false);
           <NavLink to="/media" className={getLinkClass}>Media Center</NavLink>
         </nav>
 
-        <div className="hamburger" onClick={() => setOpen(!open)}>
+        <div className="hamburger" onClick={() => setOpen(prev => !prev)}>
           ☰
         </div>
       </div>
 
-      {open && (
-        <div className="mobile-nav">
-          <NavLink to="/" className={getLinkClass} onClick={() => setOpen(false)}>Company</NavLink>
-          <NavLink to="/services" className={getLinkClass} onClick={() => setOpen(false)}>Service</NavLink>
-          <NavLink to="/products" className={getLinkClass} onClick={() => setOpen(false)}>Products</NavLink>
-          <NavLink to="/industry" className={getLinkClass} onClick={() => setOpen(false)}>Industry</NavLink>
-          <NavLink to="/media" className={getLinkClass} onClick={() => setOpen(false)}>Media Center</NavLink>
-        </div>
-      )}
+      {/* ✅ NO conditional render */}
+      <div className={`mobile-nav ${open ? "open" : ""}`}>
+        <NavLink to="/" className={getLinkClass} onClick={() => setOpen(false)}>Company</NavLink>
+        <NavLink to="/services" className={getLinkClass} onClick={() => setOpen(false)}>Service</NavLink>
+        <NavLink to="/products" className={getLinkClass} onClick={() => setOpen(false)}>Products</NavLink>
+        <NavLink to="/industry" className={getLinkClass} onClick={() => setOpen(false)}>Industry</NavLink>
+        <NavLink to="/media" className={getLinkClass} onClick={() => setOpen(false)}>Media Center</NavLink>
+      </div>
     </header>
   );
 }
