@@ -1,0 +1,37 @@
+.company-info {
+  background: #0f172a;
+  padding: 80px 20px;
+}
+
+.company-info-inner {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.info-card {
+  color: white;
+}
+
+.info-card h3 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #6b8295;
+}
+
+.info-card p {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .company-info-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}

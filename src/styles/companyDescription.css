@@ -1,0 +1,24 @@
+.company-desc {
+  padding: 100px 20px;
+  background: #ffffff;
+}
+
+.company-desc-inner {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.company-desc h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #0f172a;
+}
+
+.company-desc p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #475569;
+  margin-bottom: 16px;
+}
