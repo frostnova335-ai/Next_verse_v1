@@ -1,0 +1,30 @@
+.stats {
+  background: #0a143d;
+  padding: 80px 0;
+}
+
+.stats-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+}
+
+.stat h3 {
+  font-size: 42px;
+  color: #ffffff;
+}
+
+.stat p {
+  color: #cfd4ff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}

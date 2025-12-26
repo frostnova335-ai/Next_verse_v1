@@ -1,24 +1,58 @@
 .company-desc {
-  padding: 100px 20px;
-  background: #ffffff;
+  padding: 140px 0;
+  background: radial-gradient(
+    circle at top,
+    #111833 0%,
+    #080c1e 60%
+  );
 }
 
-.company-desc-inner {
-  max-width: 900px;
+.company-desc-container {
+  width: 90%;
+  max-width: 860px;
   margin: auto;
   text-align: center;
 }
 
-.company-desc h2 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin-bottom: 24px;
-  color: #0f172a;
+/* PREMIUM TEXT BASE */
+.spotlight {
+  color: rgba(96, 94, 94, 0.55);
+  transition: color 0.4s ease;
 }
 
+/* HEADLINE */
+.company-desc h2 {
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 28px;
+}
+
+/* BODY */
 .company-desc p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #475569;
-  margin-bottom: 16px;
+  font-size: 18px;
+  line-height: 1.9;
+  max-width: 720px;
+  margin: auto;
+}
+
+/* SUBTLE HOVER REVEAL */
+.company-desc-container:hover .spotlight {
+  color: rgba(241, 241, 241, 0.95);
+}
+
+/* SOFT GLOW (NOT CHEAP) */
+.company-desc-container:hover h2 {
+  text-shadow: 0 0 40px rgba(120, 140, 255, 0.25);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .company-desc {
+    padding: 100px 0;
+  }
+
+  .company-desc h2 {
+    font-size: 32px;
+  }
 }

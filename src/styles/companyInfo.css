@@ -1,37 +1,96 @@
 .company-info {
-  background: #0f172a;
-  padding: 80px 20px;
+  background: #e0e2ee;
+  padding: 120px 20px;
 }
 
-.company-info-inner {
-  max-width: 1200px;
+.company-info-container {
+  max-width: 1000px;
   margin: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+}
+
+/* TOP LINE */
+.company-info-top {
   text-align: center;
+  font-size: 18px;
+  margin-bottom: 80px;
+  color: #111;
 }
 
-.info-card {
-  color: white;
+.company-info-top span {
+  color: #2563eb;
+  font-weight: 500;
 }
 
-.info-card h3 {
-  font-size: 3rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #6b8295;
+/* SERVICE BLOCK */
+.service-block {
+  border-top: 1px solid #e5e7eb;
 }
 
-.info-card p {
-  font-size: 1rem;
-  letter-spacing: 0.5px;
+.service-block:last-child {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* HEADER */
+.service-header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.service-header h3 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #111;
+}
+
+/* ARROW */
+.arrow {
+  font-size: 24px;
+  transform: rotate(0deg);
+  transition: transform 0.4s ease;
+}
+
+.service-block.active .arrow {
+  transform: rotate(45deg);
+}
+
+/* CONTENT (ANIMATION CORE) */
+.service-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+/* OPEN STATE */
+.service-block.active .service-content {
+  max-height: 300px;
+}
+
+/* ITEMS */
+.service-content p {
+  padding: 12px 0;
+  font-size: 16px;
+  color: #374151;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* HOVER FEEL */
+.service-header:hover h3 {
+  color: #2563eb;
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
-  .company-info-inner {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+  .service-header h3 {
+    font-size: 22px;
+  }
+
+  .company-info-top {
+    font-size: 16px;
   }
 }

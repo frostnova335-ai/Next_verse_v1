@@ -1,28 +1,57 @@
+import { useState } from "react";
 import "../styles/companyInfo.css";
 
+const SERVICES = [
+  {
+    title: "Digital Engineering",
+    items: ["Enterprise IT", "Cloud Solutions", "Platform Modernization"],
+  },
+  {
+    title: "Data & AI",
+    items: ["Data Platform & Intelligence", "AI Strategy & Consulting", "ML Engineering"],
+  },
+  {
+    title: "Brand & Digital CX",
+    items: ["Experience Design", "Product Development", "Design Systems"],
+  },
+];
+
 export default function CompanyInfo() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggle = (index) => {
+    setActiveIndex(index === activeIndex ? null : index);
+  };
+
   return (
     <section className="company-info">
-      <div className="company-info-inner">
-        <div className="info-card">
-          <h3>18+</h3>
-          <p>Years of Experience</p>
-        </div>
+      <div className="company-info-container">
 
-        <div className="info-card">
-          <h3>250+</h3>
-          <p>Successful Projects</p>
-        </div>
+        <p className="company-info-top">
+          Delivering What’s <span>Next →</span> in Enterprise Solutions.
+        </p>
 
-        <div className="info-card">
-          <h3>40+</h3>
-          <p>Enterprise Clients</p>
-        </div>
+        {SERVICES.map((service, index) => (
+          <div
+            key={index}
+            className={`service-block ${activeIndex === index ? "active" : ""}`}
+          >
+            <button
+              className="service-header"
+              onClick={() => toggle(index)}
+            >
+              <h3>{service.title}</h3>
+              <span className="arrow">↘</span>
+            </button>
 
-        <div className="info-card">
-          <h3>10+</h3>
-          <p>Industries Served</p>
-        </div>
+            <div className="service-content">
+              {service.items.map((item, i) => (
+                <p key={i}>{item}</p>
+              ))}
+            </div>
+          </div>
+        ))}
+
       </div>
     </section>
   );
