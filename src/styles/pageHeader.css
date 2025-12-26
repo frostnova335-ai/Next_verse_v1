@@ -1,0 +1,18 @@
+.page-header {
+  padding: 120px 20px 60px;
+  background: linear-gradient(135deg, #0fb9b1, #1e3799);
+  color: white;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: clamp(28px, 4vw, 48px);
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  max-width: 700px;
+  margin: auto;
+  opacity: 0.9;
+  font-size: 16px;
+}
