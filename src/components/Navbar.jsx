@@ -1,14 +1,23 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import "../styles/navbar.css";
 import logo from "../assets/NextVRZ-Final_Logopng.png";
 
 export default function Navbar() {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
-  const [open, setOpen] = useState(false);
+const [scrolled, setScrolled] = useState(false);
 
   // Function to get the class for each NavLink
+  useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
   const getLinkClass = ({ isActive }) => {
     if (isActive && isHome) return "active home-link";
     if (isActive) return "active";
@@ -16,7 +25,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`navbar ${isHome ? "home" : "light"}`}>
+    <header
+  className={`navbar ${isHome ? "home" : "light"} ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         <div className="brand">
           <img src={logo} alt="Next Verse" />
